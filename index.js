@@ -28,6 +28,7 @@ app.use(cors({
             "http://localhost:3000",
             // "http://localhost:5000",
             "https://www.google.com",
+            "https://railway-mern-production-7521.up.railway.app"
             // "https://www.google.com/"
         ]
         if (allowed.indexOf(o) !== -1 || !o) {
