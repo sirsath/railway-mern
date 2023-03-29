@@ -17,7 +17,6 @@ app.use(express.json())
 app.use(express.static(path.join(__dirname, "build")))
 app.use(express.static(path.join(__dirname, "public")))
 
-// app.use(express.static("public"))
 app.use(log)
 app.use(cookieParser())
 app.use(cors({
@@ -26,10 +25,8 @@ app.use(cors({
         const allowed = [
             "http://localhost:5173",
             "http://localhost:3000",
-            // "http://localhost:5000",
             "https://www.google.com",
             "https://railway-mern-production-7521.up.railway.app"
-            // "https://www.google.com/"
         ]
         if (allowed.indexOf(o) !== -1 || !o) {
             cb(null, true)
@@ -46,9 +43,11 @@ app.use("/api/employee", adminProtected , require("./routes/employeeRoute"))
 app.use("/api/auth", require("./routes/authRoute"))
 app.use("/api/products", require("./routes/productRoute"))
 app.use("*", (req, res) => {
-    res.status(400).json({
-        message: "404:resourse you are lokking for is not available"
-    })
+    // res.status(400).json({
+    //     message: "404:resourse you are lokking for is not available"
+    // })
+
+    res.sendFile(path.join(__dirname, "build/index.html"))
 })
 app.use(errorHandler)
 const PORT = process.env.PORT || 5000
