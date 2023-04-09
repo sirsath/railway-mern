@@ -11,6 +11,13 @@ exports.addToCart = asyncHandler(async (req, res) => {
             message: "all feild required"
         })
     } 
+
+    const result = await Product.findById(productId)
+    if (result.stock < qty) {
+         return res.status(400).json({
+            message : "qty is to large"
+         })
+    }
     const cartItems = await Cart.findOne({ userId: req.body.userId })
     if (cartItems) {
         console.log(cartItems);

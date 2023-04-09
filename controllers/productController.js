@@ -4,6 +4,7 @@ const { productUpload } = require("../utils/upload")
 const Product = require("./../models/Product")
 const jwt = require("jsonwebtoken")
 const path = require("path")
+const URL = require("../utils/config")
 const fs = require("fs").promises
 
 exports.addProduct = asyncHandler(async (req, res) => {
@@ -25,8 +26,7 @@ exports.addProduct = asyncHandler(async (req, res) => {
         }
         const filenames = []
         for (let i = 0; i < req.files.length; i++) {
-            // assets/images/products
-            filenames.push(`assets/images/products/${req.files[i].filename}`)
+            filenames.push(`${URL}/assets/images/products/${req.files[i].filename}`)
         }
         const result = await Product.create({
             ...req.body,
@@ -58,7 +58,7 @@ exports.updateProduct = asyncHandler(async (req, res) => {
         }
         let filenames = []
         for (let i = 0; i < req.files.length; i++) {
-            filenames.push(`assets/images/products/${req.files[i].filename}`)
+            filenames.push(`${URL}/assets/images/products/${req.files[i].filename}`)
         }
         if (filenames.length > 0) {
             for (let i = 0; i < singleProduct.image.length; i++) {

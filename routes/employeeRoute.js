@@ -1,4 +1,4 @@
-const { registerEmployee, getAllEmployees, getSingleEmployees, updateEmployees, deleteEmployees, destroyEmployees, getEmployeeProfile, adminGetAllProducts, adminDeleteAllProducts, adminGetAllUsers, adminUserStatus, getUserByadminOrder, adminstat } = require("../controllers/employeeController")
+const { registerEmployee, getAllEmployees, getSingleEmployees, updateEmployees, deleteEmployees, destroyEmployees, getEmployeeProfile, adminGetAllProducts, adminDeleteAllProducts, adminGetAllUsers, adminUserStatus, getUserByadminOrder, adminstat, adminSerch } = require("../controllers/employeeController")
 const { adminProtected } = require("../middleware/auth")
 const router = require("express").Router()
 
@@ -27,6 +27,7 @@ router
     .get("/admin-user", adminGetAllUsers)
     .get("/admin-orderhistory/:userId", getUserByadminOrder)
     .put("/status/:userId", adminUserStatus)
+    .get("/serch-user", adminSerch)
     
 
     //   Dashbord 

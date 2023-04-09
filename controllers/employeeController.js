@@ -138,7 +138,7 @@ exports.adminDeleteAllProducts = asyncHandler(async (req, res) => {
     })
 })
 
-// User Controller --------------- 
+//  User Controller --------------- 
 
 exports.adminGetAllUsers = asyncHandler(async (req, res) => {
     const result = await User.find().select("-employeeId -createdAt -updatedAt -__v")
@@ -173,8 +173,8 @@ exports.getUserByadminOrder = asyncHandler(async (req, res) => {
         result
     })
 })
-//  Dashbord 
 
+//  Dashbord 
 exports.adminstat = asyncHandler(async (req, res) => {
     const Users = await User.countDocuments()
     const ActiveUser = await User.countDocuments({ active: true })
@@ -207,5 +207,14 @@ exports.adminstat = asyncHandler(async (req, res) => {
             OnlineOrders,
             CanceleOrders
         }
+    })
+})
+
+exports.adminSerch = asyncHandler(async (req, res) => {
+    const {term} = req.query
+    const result = await User.find({name : {$regex : term}})
+    res.json({
+        message : "Ohk",
+        result
     })
 })

@@ -31,7 +31,7 @@ exports.placeOrder = asyncHandler(async (req, res) => {
     const result = await Order.create({
         userId,
         products: productArray,
-        paymentMode: "cod"
+        paymentMode: "cod"  
     })
 
 
